@@ -12,8 +12,6 @@
  *   });
  */
 
-const { noteAt, STANDARD_TUNING } = window.BluesTheory;
-
 // Inlay dot positions (standard guitar markers)
 const INLAY_FRETS = new Set([3, 5, 7, 9, 12, 15, 17, 19, 21]);
 const DOUBLE_INLAY = new Set([12, 24]);
@@ -25,7 +23,7 @@ function renderFretboard(container, opts) {
     scaleNoteSet,
     rootNoteIdx,
     blueNoteIdx,
-    tuning = STANDARD_TUNING
+    tuning = window.BluesTheory.STANDARD_TUNING
   } = opts;
 
   container.innerHTML = "";
@@ -101,11 +99,11 @@ function renderFretboard(container, opts) {
       }
 
       // Note dot
-      const nIdx = noteAt(tuning[s], f);
+      const nIdx = window.BluesTheory.noteAt(tuning[s], f);
       const inScale = scaleNoteSet.has(nIdx);
 
       if (inScale) {
-        const { noteName } = window.BluesTheory;
+        const noteName = window.BluesTheory.noteName;
         const noteDot = document.createElement("div");
         noteDot.className = "note-dot";
 
